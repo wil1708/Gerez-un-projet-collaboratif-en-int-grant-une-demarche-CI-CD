@@ -52,4 +52,7 @@ jobs:
       - name: Run Tests
         working-directory: front 
         run: npm run test
+      - name: Cleanup Workspace
+        run: |
+          rm -rf *
 
