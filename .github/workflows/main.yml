@@ -51,7 +51,7 @@ jobs:
         run: npm ci
       - name: Run Tests
         working-directory: front 
-        run: npm run test:prod
+        run: npm run test
       - name: Run Lint
         working-directory: front  
         run: npm run lint
