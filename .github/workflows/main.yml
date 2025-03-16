@@ -51,12 +51,6 @@ jobs:
         run: npm ci
       - name: Run Tests
         working-directory: front 
-        run: npm run test
-      - name: Cleanup Workspace
-        run: |
-          rm -rf *
-      - name: Clean up Files
-        run: |
-          rm -rf node_modules
-          rm -rf dist
+        run: npm run test -- --single-run
+
 
