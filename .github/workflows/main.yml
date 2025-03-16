@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # Ensures full repo is checked out
       - name: List Files in Repository
         run: ls -R
       - name: Set up JDK 1.11
@@ -28,11 +28,9 @@ jobs:
         with:
           java-version: 1.11
       - name: Build with Maven
-        working-directory: back
-        run: mvn -B package
+        run: mvn -B package --file Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD/back/pom.xml
       - name: Test with Maven
-        working-directory: back
-        run: mvn -B test
+        run: mvn -B test --file Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD/back/pom.xml
 
   # Node.js CI job
   nodejs:
