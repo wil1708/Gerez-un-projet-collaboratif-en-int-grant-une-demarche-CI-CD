@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Fully checkout the repository to ensure all files are available
+          fetch-depth: 0 
       - name: List Files in Repository (Debug Step)
         run: ls -R
       - name: Set up JDK 1.11
@@ -46,6 +46,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run test:prod
-      - run: npm run lint
+      - name: Install Dependencies
+        working-directory: front 
+        run: npm ci
+      - name: Run Tests
+        working-directory: front 
+        run: npm run test:prod
+      - name: Run Lint
+        working-directory: front  
+        run: npm run lint
