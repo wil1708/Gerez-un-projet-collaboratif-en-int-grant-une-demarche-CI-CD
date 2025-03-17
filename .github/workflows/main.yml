@@ -39,7 +39,7 @@ jobs:
         with:
           name: jacoco-report
           path: back/target/site
-          retention-days: 3
+
 
 
   # Node.js CI job
@@ -60,7 +60,7 @@ jobs:
         run: npm ci
       - name: Run Tests
         working-directory: front 
-        run: npm run test -- --watch=false
+        run: npm run test -- --watch=false --code-coverage
 
 
 
