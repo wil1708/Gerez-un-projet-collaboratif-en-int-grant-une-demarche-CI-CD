@@ -12,6 +12,7 @@ on:
 
 jobs:
   maven:
+    if: ${{ github.event_name == 'pull_request'}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -20,27 +21,23 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 
-      - name: List Files in Repository (Debug Step)
-        run: ls -R
       - name: Set up JDK 1.11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
           java-version: 1.11
       - name: Build with Maven
         working-directory: back
         run: mvn -B package
-      - name: Test with Maven and Generate Jacoco Report
+      - name: Test with Maven and 
         working-directory: back
-        run: mvn -B test jacoco:report
-      - name: Upload Jacoco Coverage Report
-        uses: actions/upload-artifact@v3.1.1
-        with:
-          name: backend-coverage-report
-          path: back/target/site/jacoco-resources/
+        run: mvn -B test
+      - name: Generate Jacoco Report
+        run: mvn jacoco:report
 
 
   # Node.js CI job
   nodejs:
+    if: ${{ github.event_name == 'pull_request'}}
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
@@ -57,10 +54,6 @@ jobs:
       - name: Run Tests
         working-directory: front 
         run: npm run test -- --watch=false
-      - name: Upload Frontend Coverage Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: frontend-coverage-report
-          path: front/coverage
+
 
 
