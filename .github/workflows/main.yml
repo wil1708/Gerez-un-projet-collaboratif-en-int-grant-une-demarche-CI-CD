@@ -29,9 +29,14 @@ jobs:
       - name: Build with Maven
         working-directory: back
         run: mvn -B package
-      - name: Test with Maven
+      - name: Test with Maven and Generate Jacoco Report
         working-directory: back
-        run: mvn -B test
+        run: mvn -B test jacoco:report
+      - name: Upload Jacoco Coverage Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-coverage-report
+          path: back/target/site/jacoco
 
 
   # Node.js CI job
