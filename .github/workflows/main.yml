@@ -39,6 +39,7 @@ jobs:
         with:
           name: jacoco-report
           path: back/target/site
+          retension: 1 day
 
 
 
@@ -66,7 +67,7 @@ jobs:
         with:
           name: jasmine-report
           path: front/coverage
-
+          retension: 1 day
 
 
 
