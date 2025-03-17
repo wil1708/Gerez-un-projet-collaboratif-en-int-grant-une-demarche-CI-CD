@@ -33,10 +33,10 @@ jobs:
         working-directory: back
         run: mvn -B test jacoco:report
       - name: Upload Jacoco Coverage Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: backend-coverage-report
-          path: back/target/site/jacoco
+          path: back/target/site/jacoco-resources
 
 
   # Node.js CI job
