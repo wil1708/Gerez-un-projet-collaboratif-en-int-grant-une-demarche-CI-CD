@@ -34,6 +34,12 @@ jobs:
       - name: Generate Jacoco Report
         working-directory: back
         run: mvn jacoco:report
+      - name: Upload JaCoCo Coverage Report as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: back/target/site
+          retention-days: 3
 
 
   # Node.js CI job
