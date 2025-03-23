@@ -18,7 +18,8 @@
 		<sonar.projectKey>wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD</sonar.projectKey>
 		<sonar.organization>wil1708</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.login>${env.SONARBOB}</sonar.login>
+		<!--suppress UnresolvedMavenProperty -->
+		<sonar.login>${sonarbob}</sonar.login>
 	</properties>
 	<dependencies>
 		<dependency>
