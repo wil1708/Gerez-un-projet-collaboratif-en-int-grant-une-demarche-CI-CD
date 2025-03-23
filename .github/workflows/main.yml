@@ -53,12 +53,10 @@ jobs:
 
       # Run SonarQube Analysis
       - name: Run SonarQube Analysis
-        working-directory: ./back
+        working-directory: back
         env:
           sonarbob: ${{ secrets.sonarbob }} 
-        run: |
-          cd back
-          mvn sonar:sonar -Dsonar.login=$sonarbob -Dsonar.projectKey=wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD -Dsonar.organization=wil1708
+        run: mvn sonar:sonar -Dsonar.login=$sonarbob -Dsonar.projectKey=wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD -Dsonar.organization=wil1708
       - name: Build with Maven
         working-directory: back
         run: mvn -B package
