@@ -56,7 +56,9 @@ jobs:
         working-directory: ./back
         env:
           sonarbob: ${{ secrets.sonarbob }} 
-        run: mvn sonar:sonar -Dsonar.login=$sonarbob -Dsonar.projectKey=wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD -Dsonar.organization=wil1708 -Dsonar.sources=src/main/java
+        run: |
+          cd back
+          mvn sonar:sonar -Dsonar.login=$sonarbob -Dsonar.projectKey=wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD -Dsonar.organization=wil1708
       - name: Build with Maven
         working-directory: back
         run: mvn -B package
