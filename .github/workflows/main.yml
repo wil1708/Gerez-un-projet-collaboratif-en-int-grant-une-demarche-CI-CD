@@ -40,6 +40,12 @@ jobs:
           name: jacoco-report
           path: back/target/site
           retension: 1 day
+      - name: Analyze Back-End Code with SonarCloud
+        working-directory: back
+        env:
+            SONAR_TOKEN: ${{ secrets.sonarbob }}
+        run: mvn sonar:sonar
+
 
 
 
