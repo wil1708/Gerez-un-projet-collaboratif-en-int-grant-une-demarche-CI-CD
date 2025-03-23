@@ -26,9 +26,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Build with Maven
-        working-directory: back
-        run: mvn -B package
       - name: Test with Maven and 
         working-directory: back
         run: mvn -B test
@@ -47,16 +44,22 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Set up JDK 17
+      # Set up JDK 17 for SonarQube Analysis
+      - name: Set up JDK 17 for SonarQube
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'adopt'
-      - name: Build and Sonar Scan
+
+      # Run SonarQube Analysis
+      - name: Run SonarQube Analysis
         working-directory: ./back
         env:
-          SONAR_TOKEN: ${{ secrets.sonarbob }}
-        run: mvn clean verify sonar:sonar
+          sonarbob: ${{ secrets.sonarbob }} 
+        run: mvn sonar:sonar -Dsonar.login=$sonarbob
+      - name: Build with Maven
+        working-directory: back
+        run: mvn -B package
 
 
 
