@@ -89,6 +89,17 @@ jobs:
           name: jasmine-report
           path: front/coverage
           retension: 1 day
-
+      # Étape 5 : Analyser le code Angular avec SonarCloud
+      - name: SonarCloud Analysis for Front
+        working-directory: front
+        env:
+          SONAR_TOKEN: ${{ secrets.sonarbob }}
+        run: |
+          npx sonar-scanner \
+          -Dsonar.projectKey=wil1708_Gerez-un-projet-collaboratif-en-int-grant-une-demarche-CI-CD \
+          -Dsonar.organization=wil1708 \
+          -Dsonar.sources=src \
+          -Dsonar.exclusions=**/*.spec.ts \
+          -Dsonar.login=$SONAR_TOKEN
 
 
