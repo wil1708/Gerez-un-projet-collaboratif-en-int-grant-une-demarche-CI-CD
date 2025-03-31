@@ -12,7 +12,7 @@ on:
 
 jobs:
   maven:
-    # if: ${{ github.event_name == 'pull_request'}}
+    if: ${{ github.event_name == 'pull_request'}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -66,7 +66,7 @@ jobs:
 
   # Node.js CI job
   nodejs:
-    # if: ${{ github.event_name == 'pull_request'}}
+    if: ${{ github.event_name == 'pull_request'}}
     runs-on: [ubuntu-latest]
     strategy:
       matrix:
