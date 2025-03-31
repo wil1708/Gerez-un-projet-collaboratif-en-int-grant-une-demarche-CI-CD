@@ -1,6 +1,10 @@
 name: Combined Maven and Node.js CI
 
 on:
+  push:
+    branches:
+      - main
+      - features/*
   pull_request:
     branches:
       - main
